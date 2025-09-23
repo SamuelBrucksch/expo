@@ -46,7 +46,7 @@ import java.io.File
 class DatabaseLauncher(
   private val context: Context,
   private val configuration: UpdatesConfiguration,
-  private val updatesDirectory: File?,
+  private val updatesDirectory: File,
   private val fileDownloader: FileDownloader,
   private val selectionPolicy: SelectionPolicy,
   private val logger: UpdatesLogger,
