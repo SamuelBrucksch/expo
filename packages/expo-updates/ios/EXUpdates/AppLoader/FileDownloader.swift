@@ -442,7 +442,7 @@ public final class FileDownloader {
     return newHeaders
   }
 
-  private func applyHermesDiff(
+  internal func applyHermesDiff(
     asset: UpdateAsset,
     diffData: Data,
     destinationPath: String,
@@ -529,7 +529,7 @@ public final class FileDownloader {
     return baseFileUrl
   }
 
-  private func createPatchedAsset(
+  internal func createPatchedAsset(
     asset: UpdateAsset,
     baseFileURL: URL,
     diffData: Data,
