@@ -42,6 +42,7 @@ export function ImageComparisonBody({
   return (
     <View style={styles.container}>
       <SectionList
+        testID="image-comparison-list"
         style={styles.content}
         sections={sections}
         renderItem={renderItem}
