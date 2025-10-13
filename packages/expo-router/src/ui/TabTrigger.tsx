@@ -67,7 +67,7 @@ const TabTriggerSlot = Slot as React.ForwardRefExoticComponent<TabTriggerSlotPro
  * </Tabs>
  * ```
  */
-export function TabTrigger({ asChild, name, href, reset = 'onFocus', ...props }: TabTriggerProps) {
+export function TabTrigger({ asChild, name, href, reset, ...props }: TabTriggerProps) {
   const { trigger, triggerProps } = useTabTrigger({
     name,
     reset,
@@ -197,11 +197,13 @@ export function useTabTrigger(options: TabTriggerProps): UseTabTriggerResult {
       if (!trigger) return;
       if (event?.isDefaultPrevented()) return;
 
-      navigation?.emit({
-        type: 'tabPress',
-        target: trigger.type === 'internal' ? trigger.route.key : trigger?.href,
-        canPreventDefault: true,
-      });
+      if (!trigger.isFocused || !reset) {
+        navigation?.emit({
+          type: 'tabPress',
+          target: trigger.type === 'internal' ? trigger.route.key : trigger?.href,
+          canPreventDefault: true,
+        });
+      }
 
       if (!shouldHandleMouseEvent(event)) return;
 
@@ -224,7 +226,7 @@ export function useTabTrigger(options: TabTriggerProps): UseTabTriggerResult {
       if (!shouldHandleMouseEvent(event)) return;
 
       switchTab(name, {
-        reset: reset === 'onLongPress' ? 'always' : reset,
+        reset: reset === 'onLongPress' ? 'onBlur' : reset,
       });
     },
     [onLongPress, name, reset, trigger]

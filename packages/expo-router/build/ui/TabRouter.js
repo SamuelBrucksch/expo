@@ -63,16 +63,8 @@ function ExpoTabRouter({ triggerMap, ...options }) {
             let shouldReset = !state.history.some((item) => item.key === route?.key) && !route.state;
             if (!shouldReset && 'reset' in action.payload && action.payload.reset) {
                 switch (action.payload.reset) {
-                    case 'never': {
-                        shouldReset = false;
-                        break;
-                    }
-                    case 'always': {
-                        shouldReset = true;
-                        break;
-                    }
-                    case 'onFocus': {
-                        shouldReset = state.routes[state.index].key === route.key;
+                    case 'onBlur': {
+                        shouldReset = state.routes[state.index].key !== route.key;
                         break;
                     }
                     default: {
@@ -85,6 +77,15 @@ function ExpoTabRouter({ triggerMap, ...options }) {
                 options.routeParamList[route.name] = {
                     ...options.routeParamList[route.name],
                     ...trigger.action.payload.params,
+                };
+                state = {
+                    ...state,
+                    routes: state.routes.map((r) => {
+                        if (r.key !== route.key) {
+                            return r;
+                        }
+                        return { ...r, state: undefined };
+                    }),
                 };
                 return rnTabRouter.getStateForAction(state, trigger.action, options);
             }

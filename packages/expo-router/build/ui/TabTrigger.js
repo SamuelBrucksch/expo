@@ -30,7 +30,7 @@ const TabTriggerSlot = react_slot_1.Slot;
  * </Tabs>
  * ```
  */
-function TabTrigger({ asChild, name, href, reset = 'onFocus', ...props }) {
+function TabTrigger({ asChild, name, href, reset, ...props }) {
     const { trigger, triggerProps } = useTabTrigger({
         name,
         reset,
@@ -107,11 +107,13 @@ function useTabTrigger(options) {
             return;
         if (event?.isDefaultPrevented())
             return;
-        navigation?.emit({
-            type: 'tabPress',
-            target: trigger.type === 'internal' ? trigger.route.key : trigger?.href,
-            canPreventDefault: true,
-        });
+        if (!trigger.isFocused || !reset) {
+            navigation?.emit({
+                type: 'tabPress',
+                target: trigger.type === 'internal' ? trigger.route.key : trigger?.href,
+                canPreventDefault: true,
+            });
+        }
         if (!(0, useLinkToPathProps_1.shouldHandleMouseEvent)(event))
             return;
         switchTab(name, { reset: reset !== 'onLongPress' ? reset : undefined });
@@ -129,7 +131,7 @@ function useTabTrigger(options) {
         if (!(0, useLinkToPathProps_1.shouldHandleMouseEvent)(event))
             return;
         switchTab(name, {
-            reset: reset === 'onLongPress' ? 'always' : reset,
+            reset: reset === 'onLongPress' ? 'onBlur' : reset,
         });
     }, [onLongPress, name, reset, trigger]);
     const triggerProps = {
