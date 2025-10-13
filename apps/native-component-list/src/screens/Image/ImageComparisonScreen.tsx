@@ -28,7 +28,9 @@ export function ImageComparisonBody({
   const renderSectionHeader = ({ section }: any) => {
     return (
       <View style={styles.header}>
-        <Text style={styles.title}>{section.title}</Text>
+        <Text style={styles.title} testID={`header-${section.title}`}>
+          {section.title}
+        </Text>
       </View>
     );
   };
