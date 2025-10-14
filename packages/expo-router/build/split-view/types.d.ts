@@ -10,10 +10,6 @@ export interface SplitViewOptions {
     preferredSplitBehavior?: SplitViewSplitBehavior;
     showSecondaryToggleButton?: boolean;
 }
-export interface SplitViewContextType {
-    options: SplitViewOptions;
-    setOptions: (options: Partial<SplitViewOptions>) => void;
-}
 export interface SplitViewProps extends SplitViewOptions {
 }
 //# sourceMappingURL=types.d.ts.map

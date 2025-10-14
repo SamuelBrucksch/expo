@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/split-view/index.tsx"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAA,2CAAyC;AAAhC,uGAAA,SAAS,OAAA;AAClB,0CAAwB","sourcesContent":["export { SplitView } from './split-view';\nexport * from './types';\n"]}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/split-view/index.tsx"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAA,2CAAqD;AAA5C,qGAAA,OAAO,OAAA;AAAE,0GAAA,YAAY,OAAA;AAC9B,0CAAwB","sourcesContent":["export { Sidebar, NativeButton } from './split-view';\nexport * from './types';\n"]}

@@ -1,2 +1,2 @@
-export { SplitView } from './split-view';
+export { Sidebar, NativeButton } from './split-view';
 export * from './types';
