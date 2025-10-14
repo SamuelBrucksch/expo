@@ -21,7 +21,7 @@ avdmanager create avd --force -n pixel_7_pro --package 'system-images;android-36
 4. Start the image comparison server if you want to take and compare view shots:
 
 ```bash
-cd e2e/_nested-flows && bun --watch --no-clear-screen ./image-comparison-server.ts
+cd e2e/image-comparison/src && bun --watch --no-clear-screen ./server.ts
 ```
 
 5. In Maestro Studio, deep link into the screen and write your test. Here are the available [selectors](https://docs.maestro.dev/api-reference/selectors) and [commands](https://docs.maestro.dev/api-reference/commands). Studio will offer some guidance on the yaml syntax.
