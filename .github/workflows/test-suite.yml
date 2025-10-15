@@ -79,14 +79,14 @@ jobs:
           echo base-commit=$(git log -n 1 main --pretty=format:'%H' -- .github/workflows/test-suite.yml apps/bare-expo apps/test-suite packages yarn.lock) >> "$GITHUB_OUTPUT"
       - name: 📹 Check fingerprint
         id: fingerprint
-        uses: expo/actions/fingerprint@main
+        uses: expo/actions/fingerprint@kudo/fix-repack-path
         with:
           working-directory: apps/bare-expo
           previous-git-commit: ${{ steps.base-commit.outputs.base-commit }}
           fingerprint-state-output-file: ${{ runner.temp }}/fingerprint-state.json
           fingerprint-db-cache-path: .fingerprint.db
       - name: 🏗️ Build/Repack iOS project (bare-expo)
-        uses: expo/actions/repack-app-artifact@main
+        uses: expo/actions/repack-app-artifact@kudo/fix-repack-path
         timeout-minutes: 55
         env:
           EXPO_DEBUG: 1
@@ -235,14 +235,14 @@ jobs:
           echo base-commit=$(git log -n 1 main --pretty=format:'%H' -- .github/workflows/test-suite.yml apps/bare-expo apps/test-suite packages yarn.lock) >> "$GITHUB_OUTPUT"
       - name: 📹 Check fingerprint
         id: fingerprint
-        uses: expo/actions/fingerprint@main
+        uses: expo/actions/fingerprint@kudo/fix-repack-path
         with:
           working-directory: apps/bare-expo
           previous-git-commit: ${{ steps.base-commit.outputs.base-commit }}
           fingerprint-state-output-file: ${{ runner.temp }}/fingerprint-state.json
           fingerprint-db-cache-path: .fingerprint.db
       - name: 🏗️ Build/Repack Android project (bare-expo)
-        uses: expo/actions/repack-app-artifact@main
+        uses: expo/actions/repack-app-artifact@kudo/fix-repack-path
         timeout-minutes: 35
         env:
           EXPO_DEBUG: 1
