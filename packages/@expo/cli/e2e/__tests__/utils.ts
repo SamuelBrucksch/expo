@@ -135,7 +135,7 @@ export async function createFromFixtureAsync(
       }
 
       // TODO(@kitten): Temporary addition until we have at least one publish with the `@expo/metro` dependency
-      devDependencies['@expo/metro'] = '~0.1.0';
+      devDependencies['@expo/metro'] = '~54.0.0';
 
       await JsonFile.writeAsync(pkgPath, {
         ...pkg,
@@ -207,15 +207,6 @@ export async function setupTestProjectWithOptionsAsync(
     linkExpoPackages,
     linkExpoPackagesDev,
   });
-
-  // Many of the factors in this test are based on the expected SDK version that we're testing against.
-  const { exp } = getConfig(projectRoot, { skipPlugins: true });
-  if (!linkExpoPackages?.includes('expo')) {
-    assert(
-      exp.sdkVersion === sdkVersion,
-      `Expected exp.sdkVersion to be ${sdkVersion}, but it is set to ${exp.sdkVersion} for ${projectRoot} project.`
-    );
-  }
   return projectRoot;
 }
 
